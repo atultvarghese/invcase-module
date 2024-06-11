@@ -1,0 +1,4 @@
+type hal_invcase_service, domain;
+hal_server_domain(hal_invcase_service, hal_invcase)
+type hal_invcase_service_exec, exec_type, vendor_file_type, vendor_file_type, file_type;
+init_daemon_domain(hal_invcase_service)

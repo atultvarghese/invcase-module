@@ -18,6 +18,7 @@
 PRODUCT_PACKAGES += \
     adbd.recovery \
     android.hardware.health@2.0-impl-default.recovery \
+    build_flag_vendor \
     cgroups.recovery.json \
     charger.recovery \
     init_second_stage.recovery \
@@ -29,8 +30,8 @@ PRODUCT_PACKAGES += \
     shell_and_utilities_recovery \
     watchdogd.recovery \
     android.hardware.invcase \
-   android.hardware.invcase-service \
-   Invcase
+    android.hardware.invcase-service \
+    Invcase
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.recovery.usb.vid?=18D1 \
@@ -107,3 +108,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     adb_debug.prop \
     userdebug_plat_sepolicy.cil
+
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST+= \
+    system/app/Invcase/%
