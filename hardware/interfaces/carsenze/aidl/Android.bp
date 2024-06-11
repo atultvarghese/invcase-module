@@ -1,7 +1,7 @@
 aidl_interface {
-    name: "android.hardware.invcase",
+    name: "android.hardware.carsenze",
     vendor: true,
-    srcs: ["android/hardware/invcase/*.aidl"],
+    srcs: ["android/hardware/carsenze/*.aidl"],
     stability: "vintf",
     owner: "vqtrong",
    

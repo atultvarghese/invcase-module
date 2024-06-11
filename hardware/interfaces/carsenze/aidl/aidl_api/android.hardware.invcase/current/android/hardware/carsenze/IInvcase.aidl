@@ -18,7 +18,9 @@
 
 package android.hardware.invcase;
 @VintfStability
-interface IInvcase {
-  String getChars();
+interface ICarsenze{
+  String getCpuStats();
+  String getMemoryStats();
+  String getNetworkStats();
   void putChars(in String msg);
 }

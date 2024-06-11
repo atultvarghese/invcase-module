@@ -1,6 +1,0 @@
-package android.hardware.invcase@1.0;
-
-interface IInvcase {
-    putChars(string msg);
-    getChars() generates (string msg);
-};
