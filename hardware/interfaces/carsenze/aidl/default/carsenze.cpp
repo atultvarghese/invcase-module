@@ -25,7 +25,7 @@ namespace aidl {
                     *_aidl_return =  "Network = 10 Mb/s";
                     return ndk::ScopedAStatus::ok();
                 }
-}  // namespace invcase
+}  // namespace carsenze
 }  // namespace hardware
 }  // namespace android
 }  // namespace aidl
