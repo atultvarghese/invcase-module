@@ -1,4 +1,4 @@
-#define LOG_TAG "Invcase"
+#define LOG_TAG "Carsenze"
 
 #include <android-base/logging.h>
 #include <android/binder_manager.h>
@@ -7,7 +7,7 @@
 #include <binder/IServiceManager.h>
 #include "Carsenze.h"
 
-using aidl::android::hardware::invcase::Invcase;
+using aidl::android::hardware::carsenze::Carsenze;
 using std::string_literals::operator""s;
 
 void logd(std::string msg) {
@@ -27,20 +27,20 @@ int main() {
     ABinderProcess_setThreadPoolMaxThreadCount(0);
     ABinderProcess_startThreadPool();
 
-    std::shared_ptr<Invcase> invcase = ndk::SharedRefBase::make<Invcase>();
-    const std::string name = Invcase::descriptor + "/default"s;
+    std::shared_ptr<Carsenze> carsenze = ndk::SharedRefBase::make<Carsenze>();
+    const std::string name = Carsenze::descriptor + "/default"s;
 
-    if (invcase != nullptr) {
-        if(AServiceManager_addService(invcase->asBinder().get(), name.c_str()) != STATUS_OK) {
-            loge("Failed to register IInvcase service");
+    if (carsenze != nullptr) {
+        if(AServiceManager_addService(carsenze->asBinder().get(), name.c_str()) != STATUS_OK) {
+            loge("Failed to register ICarsense service");
             return -1;
         }
     } else {
-        loge("Failed to get IInvcase instance");
+        loge("Failed to get ICarsenze instance");
         return -1;
     }
 
-    logd("IInvcase service starts to join service pool");
+    logd("ICarsenze service starts to join service pool");
     ABinderProcess_joinThreadPool();
 
     return EXIT_FAILURE;  // should not reached

@@ -1,4 +1,4 @@
-#define LOG_TAG "Invcase"
+#define LOG_TAG "Carsenze"
 
 #include <utils/Log.h>
 #include <iostream>
