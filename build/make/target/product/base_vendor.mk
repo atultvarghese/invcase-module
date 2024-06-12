@@ -28,9 +28,9 @@ PRODUCT_PACKAGES += \
     servicemanager.recovery \
     shell_and_utilities_recovery \
     watchdogd.recovery \
-    android.hardware.invcase \
-   android.hardware.invcase-service \
-   Invcase
+    android.hardware.carsenze \
+   android.hardware.carsenze-service \
+   Carsenze
 
 PRODUCT_VENDOR_PROPERTIES += \
     ro.recovery.usb.vid?=18D1 \
