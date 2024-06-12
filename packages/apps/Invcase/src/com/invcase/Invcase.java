@@ -19,6 +19,20 @@ public class Invcase extends Activity {
     private static final String IINVCASE_AIDL_INTERFACE = "android.hardware.invcase.IInvcase/default";
     private static IInvcase invcaseAJ; // AIDL Java
 
+    public Invcase() {
+        IBinder binder = ServiceManager.getService(IINVCASE_AIDL_INTERFACE);
+        if (binder == null) {
+            Log.e(TAG, "Getting " + IINVCASE_AIDL_INTERFACE + " service daemon binder failed!");
+        } else {
+            invcaseAJ = IInvcase.Stub.asInterface(binder);
+            if (invcaseAJ == null) {
+                Log.e(TAG, "Getting IInvcase AIDL daemon interface failed!");
+            } else {
+                Log.d(TAG, "IInvcase AIDL daemon interface is binded!");
+            }
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +44,8 @@ public class Invcase extends Activity {
             public void onClick(View view) {
                 EditText editText = (EditText)findViewById(R.id.editText);
                 String txt = editText.getText().toString();
-                Log.d(TAG, "App: request= " + txt);
-
+                Log.d(TAG, "App: request from app = " + txt);
+                Toast.makeText(Invcase.this, "On click", Toast.LENGTH_LONG).show();
                 if(invcaseAJ != null) {
                     try {
                         invcaseAJ.putChars(txt);
@@ -66,17 +80,5 @@ public class Invcase extends Activity {
                 tv.setText(ret);
             }
         });
-
-        IBinder binder = ServiceManager.getService(IINVCASE_AIDL_INTERFACE);
-        if (binder == null) {
-            Log.e(TAG, "Getting " + IINVCASE_AIDL_INTERFACE + " service daemon binder failed!");
-        } else {
-            invcaseAJ = IInvcase.Stub.asInterface(binder);
-            if (invcaseAJ == null) {
-                Log.e(TAG, "Getting IInvcase AIDL daemon interface failed!");
-            } else {
-                Log.d(TAG, "IInvcase AIDL daemon interface is binded!");
-            }
-        }
     }
 }

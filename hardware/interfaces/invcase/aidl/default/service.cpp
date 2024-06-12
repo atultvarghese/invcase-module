@@ -33,11 +33,11 @@ int main() {
     if (invcase != nullptr) {
         if(AServiceManager_addService(invcase->asBinder().get(), name.c_str()) != STATUS_OK) {
             loge("Failed to register IInvcase service");
-            return -1;
+            // return -1;
         }
     } else {
         loge("Failed to get IInvcase instance");
-        return -1;
+        // return -1;
     }
 
     logd("IInvcase service starts to join service pool");
