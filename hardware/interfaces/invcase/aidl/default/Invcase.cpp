@@ -12,7 +12,7 @@ namespace invcase {
 
 //String getChars();
 ndk::ScopedAStatus Invcase::getChars(std::string* _aidl_return) {
-    std::ifstream invcase_dev;
+   /*  std::ifstream invcase_dev;
     invcase_dev.open("/dev/invcase");
     if(invcase_dev.good()) {
         std::string line;
@@ -22,7 +22,17 @@ ndk::ScopedAStatus Invcase::getChars(std::string* _aidl_return) {
     } else {
         ALOGE("getChars: can not open /dev/invcase");
         return ndk::ScopedAStatus::fromServiceSpecificError(-1);
-    }
+    } */
+
+   // Hard-coded string response
+    std::string hardCodedResponse = "This is a hard-coded response";
+    
+    // Set the output parameter to the hard-coded string
+    *_aidl_return = hardCodedResponse;
+    
+    // Log the hard-coded response
+    ALOGD("Invcase service: getChars: %s", hardCodedResponse.c_str());
+    
     return ndk::ScopedAStatus::ok();
 }
 

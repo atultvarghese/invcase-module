@@ -22,7 +22,7 @@ void loge(std::string msg) {
 
 int main() {
     // Enable vndbinder to allow vendor-to-venfor binder call
-    android::ProcessState::initWithDriver("/dev/vndbinder");
+    android::ProcessState::initWithDriver("/dev/binder");
 
     ABinderProcess_setThreadPoolMaxThreadCount(0);
     ABinderProcess_startThreadPool();

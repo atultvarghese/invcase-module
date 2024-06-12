@@ -1,0 +1,8 @@
++ <hal format="aidl" optional="true">
++     <name>android.hardware.invcase</name>
++     <version>1</version>
++     <interface>
++         <name>IInvcase</name>
++         <instance>default</instance>
++     </interface>
++ </hal>
