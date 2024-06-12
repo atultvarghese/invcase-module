@@ -2,6 +2,6 @@
     <hal format="aidl">
         <name>android.hardware.carsenze</name>
         <version>1</version>
-        <fqname>IInvcase/default</fqname>
+        <fqname>ICarsenze/default</fqname>
     </hal>
 </manifest>

@@ -1,5 +1,5 @@
-service android.hardware.invcase-service /vendor/bin/hw/android.hardware.invcase-service
-        interface aidl android.hardware.invcase.IInvcase/default
+service android.hardware.carsenze-service /vendor/bin/hw/android.hardware.carsenze-service
+        interface aidl android.hardware.carsenze.ICarsenze/default
         class hal
         user system
         group system
