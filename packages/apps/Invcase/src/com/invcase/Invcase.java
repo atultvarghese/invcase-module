@@ -11,6 +11,8 @@ import android.util.Log;
 import android.os.ServiceManager;
 import android.os.IBinder;
 import android.hardware.invcase.IInvcase;
+import android.widget.Toast;
+
 
 public class Invcase extends Activity {
     private static final String TAG = "Invcase";
@@ -33,8 +35,13 @@ public class Invcase extends Activity {
                 if(invcaseAJ != null) {
                     try {
                         invcaseAJ.putChars(txt);
+                         Log.e(TAG, "Put Chars called successfully");
+                          String message = "Put Chars called successfully" + invcaseAJ;
+                           Toast.makeText(Invcase.this, message, Toast.LENGTH_LONG).show();
                     } catch (android.os.RemoteException e) {
                         Log.e(TAG, "IInvcase-AIDL error", e);
+                           String message = "put Chars error" + e;
+                        Toast.makeText(Invcase.this, message, Toast.LENGTH_LONG).show();
                     }
                 }
 
@@ -43,8 +50,13 @@ public class Invcase extends Activity {
                 if(invcaseAJ != null) {
                     try {
                         ret = invcaseAJ.getChars();
+                           Log.e(TAG, "get Chars called successfully");
+                             String message =" get Chars called successfully" + ret;
+                           Toast.makeText(Invcase.this, message, Toast.LENGTH_LONG).show();
                     } catch (android.os.RemoteException e) {
                         Log.e(TAG, "IInvcase-AIDL error", e);
+                          String message = "get Chars error" + e;
+                        Toast.makeText(Invcase.this, message, Toast.LENGTH_LONG).show();
                     }
                 }
 
