@@ -1,7 +1,7 @@
 package android.hardware.carsenze;
 
 @VintfStability
-interface ICarSenze {
+interface ICarsenze {
    String getCpuStats();
    String getMemoryStats();
    String getNetworkStats();
