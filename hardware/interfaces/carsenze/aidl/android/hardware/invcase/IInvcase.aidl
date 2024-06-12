@@ -1,7 +1,7 @@
-package android.hardware.invcase;
+package android.hardware.carsenze;
 
 @VintfStability
-interface IInvcase {
+interface ICarsenze {
    String getCpuStats();
    String getMemoryStats();
    String getNetworkStats();
