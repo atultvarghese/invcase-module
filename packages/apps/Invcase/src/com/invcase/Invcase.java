@@ -19,19 +19,19 @@ public class Invcase extends Activity {
     private static final String IINVCASE_AIDL_INTERFACE = "android.hardware.invcase.IInvcase/default";
     private static IInvcase invcaseAJ; // AIDL Java
 
-    public Invcase() {
-        IBinder binder = ServiceManager.getService(IINVCASE_AIDL_INTERFACE);
-        if (binder == null) {
-            Log.e(TAG, "Getting " + IINVCASE_AIDL_INTERFACE + " service daemon binder failed!");
-        } else {
-            invcaseAJ = IInvcase.Stub.asInterface(binder);
-            if (invcaseAJ == null) {
-                Log.e(TAG, "Getting IInvcase AIDL daemon interface failed!");
-            } else {
-                Log.d(TAG, "IInvcase AIDL daemon interface is binded!");
-            }
-        }
-    }
+    // public Invcase() {
+    //     IBinder binder = ServiceManager.getService(IINVCASE_AIDL_INTERFACE);
+    //     if (binder == null) {
+    //         Log.e(TAG, "Getting " + IINVCASE_AIDL_INTERFACE + " service daemon binder failed!");
+    //     } else {
+    //         invcaseAJ = IInvcase.Stub.asInterface(binder);
+    //         if (invcaseAJ == null) {
+    //             Log.e(TAG, "Getting IInvcase AIDL daemon interface failed!");
+    //         } else {
+    //             Log.d(TAG, "IInvcase AIDL daemon interface is binded!");
+    //         }
+    //     }
+    // }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class Invcase extends Activity {
                 Toast.makeText(Invcase.this, "On click", Toast.LENGTH_LONG).show();
                 if(invcaseAJ != null) {
                     try {
+                        Log.e(TAG, "Put Chars calling");
                         invcaseAJ.putChars(txt);
                          Log.e(TAG, "Put Chars called successfully");
                           String message = "Put Chars called successfully" + invcaseAJ;
@@ -63,6 +64,7 @@ public class Invcase extends Activity {
 
                 if(invcaseAJ != null) {
                     try {
+                        Log.e(TAG, "Get Chars calling");
                         ret = invcaseAJ.getChars();
                            Log.e(TAG, "get Chars called successfully");
                              String message =" get Chars called successfully" + ret;
@@ -80,5 +82,17 @@ public class Invcase extends Activity {
                 tv.setText(ret);
             }
         });
+
+        IBinder binder = ServiceManager.getService(IINVCASE_AIDL_INTERFACE);
+        if (binder == null) {
+            Log.e(TAG, "Getting " + IINVCASE_AIDL_INTERFACE + " service daemon binder failed!");
+        } else {
+            invcaseAJ = IInvcase.Stub.asInterface(binder);
+            if (invcaseAJ == null) {
+                Log.e(TAG, "Getting IInvcase AIDL daemon interface failed!");
+            } else {
+                Log.d(TAG, "IInvcase AIDL daemon interface is binded!");
+            }
+        }
     }
 }
