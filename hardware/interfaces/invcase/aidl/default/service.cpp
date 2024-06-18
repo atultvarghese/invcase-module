@@ -1,4 +1,4 @@
-#define LOG_TAG "Invcase"
+#define LOG_TAG "Invcase_hal"
 
 #include <android-base/logging.h>
 #include <android/binder_manager.h>
@@ -22,23 +22,27 @@ void loge(std::string msg) {
 
 int main() {
     // Enable vndbinder to allow vendor-to-venfor binder call
-    android::ProcessState::initWithDriver("/dev/binder");
+    // new line compared to the power module main.cpp
+    //android::ProcessState::initWithDriver("/dev/binder");
 
     ABinderProcess_setThreadPoolMaxThreadCount(0);
-    ABinderProcess_startThreadPool();
+    // ABinderProcess_startThreadPool();
 
     std::shared_ptr<Invcase> invcase = ndk::SharedRefBase::make<Invcase>();
-    const std::string name = Invcase::descriptor + "/default"s;
+    const std::string name = std::string() + Invcase::descriptor + "/default";
 
-    if (invcase != nullptr) {
+    /*if (invcase != nullptr) {
         if(AServiceManager_addService(invcase->asBinder().get(), name.c_str()) != STATUS_OK) {
             loge("Failed to register IInvcase service");
-            // return -1;
+            return -1;
         }
     } else {
         loge("Failed to get IInvcase instance");
-        // return -1;
-    }
+        return -1;
+    }*/
+
+    binder_status_t status = AServiceManager_addService(invcase->asBinder().get(), name.c_str());
+    CHECK_EQ(status, STATUS_OK);
 
     logd("IInvcase service starts to join service pool");
     ABinderProcess_joinThreadPool();

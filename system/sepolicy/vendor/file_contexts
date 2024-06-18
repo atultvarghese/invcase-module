@@ -195,6 +195,7 @@
 /(vendor|system/vendor)/lib(64)?/libhidlmemory\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libion\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libjsoncpp\.so u:object_r:same_process_hal_file:s0
+
 /(vendor|system/vendor)/lib(64)?/liblzma\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libpng\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libprocessgroup\.so u:object_r:same_process_hal_file:s0
@@ -203,4 +204,3 @@
 /(vendor|system/vendor)/lib(64)?/libutilscallstack\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/lib(64)?/libz\.so u:object_r:same_process_hal_file:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.invcase-service u:object_r:hal_invcase_service_exec:s0
-
