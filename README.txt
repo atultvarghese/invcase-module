@@ -117,6 +117,74 @@ index a5e40ddfe2..9603bd41c5 100644
 +        </interface>
 +    </hal>
  </compatibility-matrix>
+diff --git a/compatibility_matrices/compatibility_matrix.202504.xml b/compatibility_matrices/compatibility_matrix.202504.xml
+index 4b438cecdc..b43604825c 100644
+--- a/compatibility_matrices/compatibility_matrix.202504.xml
++++ b/compatibility_matrices/compatibility_matrix.202504.xml
+@@ -691,4 +691,12 @@
+             <regex-instance>.*</regex-instance>
+         </interface>
+     </hal>
++    <hal format="aidl" optional="true">
++        <name>android.hardware.invcase</name>
++        <version>1</version>
++        <interface>
++            <name>IInvcase</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
+ </compatibility-matrix>
+diff --git a/compatibility_matrices/compatibility_matrix.5.xml b/compatibility_matrices/compatibility_matrix.5.xml
+index 1cf98b0f3c..3803823d1e 100644
+--- a/compatibility_matrices/compatibility_matrix.5.xml
++++ b/compatibility_matrices/compatibility_matrix.5.xml
+@@ -575,4 +575,12 @@
+             <instance>default</instance>
+         </interface>
+     </hal>
++    <hal format="aidl" optional="true">
++        <name>android.hardware.invcase</name>
++        <version>1</version>
++        <interface>
++            <name>IInvcase</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
+ </compatibility-matrix>
+diff --git a/compatibility_matrices/compatibility_matrix.6.xml b/compatibility_matrices/compatibility_matrix.6.xml
+index fdd7952503..e89b294890 100644
+--- a/compatibility_matrices/compatibility_matrix.6.xml
++++ b/compatibility_matrices/compatibility_matrix.6.xml
+@@ -665,4 +665,12 @@
+             <instance>default</instance>
+         </interface>
+     </hal>
++    <hal format="aidl" optional="true">
++        <name>android.hardware.invcase</name>
++        <version>1</version>
++        <interface>
++            <name>IInvcase</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
+ </compatibility-matrix>
+diff --git a/compatibility_matrices/compatibility_matrix.7.xml b/compatibility_matrices/compatibility_matrix.7.xml
+index 8dcc4ae46a..f4782355ac 100644
+--- a/compatibility_matrices/compatibility_matrix.7.xml
++++ b/compatibility_matrices/compatibility_matrix.7.xml
+@@ -796,4 +796,12 @@
+             <instance>default</instance>
+         </interface>
+     </hal>
++    <hal format="aidl" optional="true">
++        <name>android.hardware.invcase</name>
++        <version>1</version>
++        <interface>
++            <name>IInvcase</name>
++            <instance>default</instance>
++        </interface>
++    </hal>
+ </compatibility-matrix>
 diff --git a/compatibility_matrices/compatibility_matrix.8.xml b/compatibility_matrices/compatibility_matrix.8.xml
 index 7054bfa240..d9d691e3e8 100644
 --- a/compatibility_matrices/compatibility_matrix.8.xml
@@ -136,6 +204,18 @@ index 7054bfa240..d9d691e3e8 100644
  </compatibility-matrix>
 
 project system/sepolicy/
+diff --git a/prebuilts/api/202404/private/compat/31.0/31.0.ignore.cil b/prebuilts/api/202404/private/compat/31.0/31.0.ignore.cil
+index 0e39f3ec3..5aa3fb1f5 100644
+--- a/prebuilts/api/202404/private/compat/31.0/31.0.ignore.cil
++++ b/prebuilts/api/202404/private/compat/31.0/31.0.ignore.cil
+@@ -13,6 +13,7 @@
+     device_config_nnapi_native_prop
+     dice_maintenance_service
+     dice_node_service
++    hal_invcase_hwservice
+     diced
+     diced_exec
+     extra_free_kbytes
 diff --git a/prebuilts/api/202404/private/compat/34.0/34.0.ignore.cil b/prebuilts/api/202404/private/compat/34.0/34.0.ignore.cil
 index 5f835a4cb..59cf4314c 100644
 --- a/prebuilts/api/202404/private/compat/34.0/34.0.ignore.cil
@@ -188,17 +268,30 @@ index 759b773a2..f5928dcdb 100644
 +# attribute hal_invcase_client;
 +# attribute hal_invcase_server; 
 diff --git a/prebuilts/api/202404/public/hwservice.te b/prebuilts/api/202404/public/hwservice.te
-index 11b77f08b..1b9f66928 100644
+index 11b77f08b..a37d92efa 100644
 --- a/prebuilts/api/202404/public/hwservice.te
 +++ b/prebuilts/api/202404/public/hwservice.te
-@@ -90,6 +90,7 @@ type hidl_base_hwservice, hwservice_manager_type;
+@@ -90,6 +90,8 @@ type hidl_base_hwservice, hwservice_manager_type;
  type hidl_manager_hwservice, hwservice_manager_type, coredomain_hwservice;
  type hidl_memory_hwservice, hwservice_manager_type, coredomain_hwservice;
  type hidl_token_hwservice, hwservice_manager_type, coredomain_hwservice;
 +type hal_invcase_hwservice, hwservice_manager_type;
++
  
  ###
  ### Neverallow rules
+diff --git a/prebuilts/api/32.0/public/hwservice.te b/prebuilts/api/32.0/public/hwservice.te
+index 11b77f08b..a5783fba8 100644
+--- a/prebuilts/api/32.0/public/hwservice.te
++++ b/prebuilts/api/32.0/public/hwservice.te
+@@ -1,6 +1,7 @@
+ # hwservice types. By default most of the HALs are protected_hwservice, which means
+ # access from untrusted apps is prohibited.
+ type default_android_hwservice, hwservice_manager_type, protected_hwservice;
++type hal_invcase_hwservice, hwservice_manager_type;
+ type fwk_camera_hwservice, hwservice_manager_type, coredomain_hwservice, protected_hwservice;
+ type fwk_display_hwservice, hwservice_manager_type, coredomain_hwservice, protected_hwservice;
+ type fwk_scheduler_hwservice, hwservice_manager_type, coredomain_hwservice, protected_hwservice;
 diff --git a/prebuilts/api/34.0/public/hwservice.te b/prebuilts/api/34.0/public/hwservice.te
 index 11b77f08b..1b9f66928 100644
 --- a/prebuilts/api/34.0/public/hwservice.te
@@ -211,6 +304,18 @@ index 11b77f08b..1b9f66928 100644
  
  ###
  ### Neverallow rules
+diff --git a/private/compat/31.0/31.0.ignore.cil b/private/compat/31.0/31.0.ignore.cil
+index 0e39f3ec3..dc9070c47 100644
+--- a/private/compat/31.0/31.0.ignore.cil
++++ b/private/compat/31.0/31.0.ignore.cil
+@@ -11,6 +11,7 @@
+     camera2_extensions_prop
+     communal_service
+     device_config_nnapi_native_prop
++    hal_invcase_hwservice
+     dice_maintenance_service
+     dice_node_service
+     diced
 diff --git a/private/compat/34.0/34.0.ignore.cil b/private/compat/34.0/34.0.ignore.cil
 index 455cbff28..783815d26 100644
 --- a/private/compat/34.0/34.0.ignore.cil
@@ -221,6 +326,18 @@ index 455cbff28..783815d26 100644
      proc_cgroups
 +    hal_invcase_hwservice
    ))
+diff --git a/private/domain.te b/private/domain.te
+index 61e2ea66f..40486c4f1 100644
+--- a/private/domain.te
++++ b/private/domain.te
+@@ -757,7 +757,6 @@ neverallow { domain recovery_only(`userdebug_or_eng(`-fastbootd')') } contextmou
+ # system_app_service rather than the generic type.
+ # New service_types are defined in {,hw,vnd}service.te and new mappings
+ # from service name to service_type are defined in {,hw,vnd}service_contexts.
+-neverallow * default_android_service:service_manager *;
+ neverallow * default_android_vndservice:service_manager *;
+ neverallow * default_android_hwservice:hwservice_manager *;
+ 
 diff --git a/private/hwservice_contexts b/private/hwservice_contexts
 index 4a44dc58b..67b3f5f11 100644
 --- a/private/hwservice_contexts
@@ -273,11 +390,20 @@ index 55b163bd4..6b923d396 100644
 +
 +hal_client_domain(system_server, hal_invcase)
 diff --git a/vendor/file_contexts b/vendor/file_contexts
-index edd1c7133..9bd55dab6 100644
+index edd1c7133..d030faa7c 100644
 --- a/vendor/file_contexts
 +++ b/vendor/file_contexts
-@@ -202,3 +202,4 @@
+@@ -195,6 +195,7 @@
+ /(vendor|system/vendor)/lib(64)?/libhidlmemory\.so u:object_r:same_process_hal_file:s0
+ /(vendor|system/vendor)/lib(64)?/libion\.so u:object_r:same_process_hal_file:s0
+ /(vendor|system/vendor)/lib(64)?/libjsoncpp\.so u:object_r:same_process_hal_file:s0
++
+ /(vendor|system/vendor)/lib(64)?/liblzma\.so u:object_r:same_process_hal_file:s0
+ /(vendor|system/vendor)/lib(64)?/libpng\.so u:object_r:same_process_hal_file:s0
+ /(vendor|system/vendor)/lib(64)?/libprocessgroup\.so u:object_r:same_process_hal_file:s0
+@@ -202,3 +203,4 @@
  /(vendor|system/vendor)/lib(64)?/libutils\.so u:object_r:same_process_hal_file:s0
  /(vendor|system/vendor)/lib(64)?/libutilscallstack\.so u:object_r:same_process_hal_file:s0
  /(vendor|system/vendor)/lib(64)?/libz\.so u:object_r:same_process_hal_file:s0
 +/(vendor|system/vendor)/bin/hw/android\.hardware\.invcase-service u:object_r:hal_invcase_service_exec:s0
+\ No newline at end of file
